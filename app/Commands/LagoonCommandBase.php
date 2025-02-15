@@ -12,7 +12,7 @@ abstract class LagoonCommandBase extends Command
     protected Client $LagoonClient;
     protected $APPDIR;
 
-    const MAX_TOKEN_AGE_MINUTES = 10;
+    const MAX_TOKEN_AGE_MINUTES = 5;
 
     public function __construct()
     {
