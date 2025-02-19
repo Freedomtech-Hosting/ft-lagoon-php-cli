@@ -7,7 +7,7 @@ class ListProjectVariablesCommand extends LagoonCommandBase
      *
      * @var string
      */
-    protected $signature = 'list-project-variables {--i|identity_file=~/.ssh/id_rsa} {project} {environment?}';
+    protected $signature = 'list-project-variables {--i|identity_file=~/.ssh/id_rsa} {--p|project=} {--e|environment=}';
 
     /**
      * The console command description.
@@ -23,12 +23,14 @@ class ListProjectVariablesCommand extends LagoonCommandBase
     {
         $identity_file = $this->option("identity_file");
 
-        $project = $this->argument('project');
+        $project = $this->option('project');
 
-        $environment = "";
-        if ($this->argument('environment')) {
-            $environment = $this->argument('environment');
+        if (empty($project)) {
+            $this->error('Project is required');
+            return 1;
         }
+
+        $environment = $this->option('environment');
 
         $this->initLagoonClient($identity_file);
 
@@ -48,11 +50,12 @@ class ListProjectVariablesCommand extends LagoonCommandBase
             $tableData[] = [
                 $key,
                 $variable['value'],
-                $variable['scope']
+                $variable['scope'],
+                $environment
             ];
         }
 
-        $headers = ['Name', 'Value', 'Scope'];
+        $headers = ['Name', 'Value', 'Scope', 'Environment'];
         if ($environment) {
             $this->info("Variables for project '$project' in environment '$environment':");
         } else {

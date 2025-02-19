@@ -1,10 +1,10 @@
 <?php namespace App\Commands;
 
-class DeleteProjectVariable extends LagoonCommandBase
+class DeleteProjectVariableCommand extends LagoonCommandBase
 {
     /**
      * The name and signature of the console command.
-     *
+     *  
      * @var string
      */
     protected $signature = 'delete-project-variable {--i|identity_file=~/.ssh/id_rsa} {--p|project=} {--e|environment=} {--k|key=}';
@@ -38,6 +38,15 @@ class DeleteProjectVariable extends LagoonCommandBase
             return 1;
         }
     
+        if (!$this->confirm(
+            $environment 
+                ? "Are you sure you want to delete variable '$key' from environment '$environment' in project '$projectName'? This action cannot be reversed."
+                : "Are you sure you want to delete variable '$key' from project '$projectName'? This action cannot be reversed."
+        )) {
+            $this->info('Operation cancelled');
+            return 0;
+        }
+
         if($environment) {
             $data = $this->LagoonClient->deleteProjectVariableByNameForEnvironment(
                 $projectName,
