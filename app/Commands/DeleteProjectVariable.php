@@ -1,0 +1,66 @@
+<?php namespace App\Commands;
+
+class DeleteProjectVariable extends LagoonCommandBase
+{
+    /**
+     * The name and signature of the console command.
+     *
+     * @var string
+     */
+    protected $signature = 'delete-project-variable {--i|identity_file=~/.ssh/id_rsa} {--p|project=} {--e|environment=} {--k|key=}';
+    /**
+     * The console command description.
+     *
+     * @var string
+     */
+    protected $description = 'Delete project variable';
+
+    /**
+     * Execute the console command.
+     */
+    public function handle()
+    {
+        $identity_file = $this->option("identity_file");
+
+        $this->initLagoonClient($identity_file);
+
+        $projectName = $this->option('project');
+        if (empty($projectName)) {
+            $this->error('Project name is required');
+            return 1;
+        }
+
+        $environment = $this->option('environment');
+
+        $key = $this->option('key');
+        if (empty($key)) {
+            $this->error('Key is required');
+            return 1;
+        }
+    
+        if($environment) {
+            $data = $this->LagoonClient->deleteProjectVariableByNameForEnvironment(
+                $projectName,
+                $key,
+                $environment
+            );
+        } else {
+            $data = $this->LagoonClient->deleteProjectVariableByName(
+                $projectName,
+                $key
+            );
+        }
+
+        if (isset($data['error'])) {
+            $this->error($data['error'][0]['message']);
+            return 1;
+        }
+
+        if (isset($data['deleteEnvVariableByName']) && $data['deleteEnvVariableByName'] === 'success') {
+            $this->info("Variable deleted successfully");
+        } else {
+            $this->error("Failed to delete variable");
+            return 1;
+        }
+    }
+}
