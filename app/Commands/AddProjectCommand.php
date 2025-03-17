@@ -55,7 +55,16 @@ class AddProjectCommand extends LagoonCommandBase
             return 1;
         }
 
-        $privateKey = $this->option('privateKey');
+	$privateKey = $this->option('privateKey');
+	if($privateKey && ! file_exists($privateKey)) {
+            $this->error('Private key must be a file');
+	    return 1;
+	}
+
+	$privateKeyData = "";
+	if($privateKey) {
+	   $privateKeyData = file_get_contents($privateKey);
+	}
 
         $organizationId = $this->option('organizationId');
         if (empty($organizationId)) {
@@ -69,7 +78,7 @@ class AddProjectCommand extends LagoonCommandBase
             return 1;
         }
     
-        $data = $this->LagoonClient->createLagoonProjectInOrganization($projectName, $gitUrl, $branches, $productionEnvironment, $clusterId, $privateKey, $organizationId, $addOrgOwnerToProject);
+        $data = $this->LagoonClient->createLagoonProjectInOrganization($projectName, $gitUrl, $branches, $productionEnvironment, $clusterId, $privateKeyData, $organizationId, $addOrgOwnerToProject);
         
         if (isset($data['error'])) {
             $this->error($data['error'][0]['message']);
