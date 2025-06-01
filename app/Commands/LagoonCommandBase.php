@@ -36,7 +36,7 @@ abstract class LagoonCommandBase extends Command
                 'identity_file',
                 'i',
                 \Symfony\Component\Console\Input\InputOption::VALUE_OPTIONAL,
-                'Path to your SSH identity file (default: ' . self::DEFATULT_IDENTITY_FILE . ')',
+                'Path to your SSH identity file (default: ' . self::DEFAULT_IDENTITY_FILE . ')',
             )
         );
     }
