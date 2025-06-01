@@ -77,7 +77,7 @@ abstract class LagoonCommandBase extends Command
             if(preg_match("/^~/", $sshPrivateKeyFile)) {
                 $sshPrivateKeyFile = $HOME . substr($sshPrivateKeyFile, 1);
             }   
-            var_dump($sshPrivateKeyFile);
+            // Debugging statement removed to prevent unintended output in production.
             $clientOptions['ssh_private_key_file'] = $sshPrivateKeyFile;
         } else {
             $sshPrivateKeyFile = "UNSET"; // we set this to a string so we can use it in the token file name
