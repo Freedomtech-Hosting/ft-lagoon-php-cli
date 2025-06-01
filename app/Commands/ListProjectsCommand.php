@@ -1,5 +1,7 @@
 <?php namespace App\Commands;
 
+
+
 class ListProjectsCommand extends LagoonCommandBase
 {
     /**
@@ -7,7 +9,7 @@ class ListProjectsCommand extends LagoonCommandBase
      *
      * @var string
      */
-    protected $signature = 'list-projects {--i|identity_file=~/.ssh/id_rsa}';
+    protected $signature = 'list-projects';
 
     /**
      * The console command description.

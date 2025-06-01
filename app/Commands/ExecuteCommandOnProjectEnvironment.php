@@ -12,7 +12,7 @@ class ExecuteCommandOnProjectEnvironment extends LagoonCommandBase
      *
      * @var string
      */
-    protected $signature = 'execute-command-on-project-environment {--i|identity_file=~/.ssh/id_rsa} {--p|project=} {--e|environment=} {--s|service=cli} {--c|container=cli} {execute}';
+    protected $signature = 'execute-command-on-project-environment {--p|project=} {--e|environment=} {--s|service=cli} {--c|container=cli} {execute}';
 
     /**
      * The console command description.

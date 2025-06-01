@@ -21,6 +21,26 @@ abstract class LagoonCommandBase extends Command
     /** @var int Maximum age in minutes before a token is considered expired */
     const MAX_TOKEN_AGE_MINUTES = 5;
 
+    /** @var string Default ssh id file */
+    const DEFATULT_IDENTITY_FILE = "~/.ssh/id_rsa";
+
+    /**
+     * Configure the command options across all children
+     * 
+     * Adds an option for specifying the ssh identity file
+     */
+    protected function configure()
+    {
+        $this->getDefinition()->addOption(
+            new \Symfony\Component\Console\Input\InputOption(
+                'identity_file',
+                'i',
+                \Symfony\Component\Console\Input\InputOption::VALUE_OPTIONAL,
+                'Path to your SSH identity file (default: ' . self::DEFATULT_IDENTITY_FILE . ')',
+            )
+        );
+    }
+
     /**
      * Constructor
      * 
@@ -46,19 +66,27 @@ abstract class LagoonCommandBase extends Command
      * 
      * @param string $sshPrivateKeyFile Path to SSH private key file
      */
-    protected function initLagoonClient($sshPrivateKeyFile = "~/.ssh/id_rsa")
+    protected function initLagoonClient($sshPrivateKeyFile)
     {
-        $HOME = getenv('HOME') ?? "/tmp/";
 
-        if(preg_match("/^~/", $sshPrivateKeyFile)) {
-            $sshPrivateKeyFile = $HOME . substr($sshPrivateKeyFile, 1);
-        }   
+        $clientOptions = [];
 
-        $this->LagoonClient = app(Client::class, [
-          'ssh_private_key_file' => $sshPrivateKeyFile
-        ]);
+        if(!empty($sshPrivateKeyFile)) {
+            $HOME = getenv('HOME') ?? "/tmp/";
+
+            if(preg_match("/^~/", $sshPrivateKeyFile)) {
+                $sshPrivateKeyFile = $HOME . substr($sshPrivateKeyFile, 1);
+            }   
+            var_dump($sshPrivateKeyFile);
+            $clientOptions['ssh_private_key_file'] = $sshPrivateKeyFile;
+        } else {
+            $sshPrivateKeyFile = "UNSET"; // we set this to a string so we can use it in the token file name
+        }
+
+        $this->LagoonClient = app(Client::class, $clientOptions);
         
         $tokenFile = $this->APPDIR . DIRECTORY_SEPARATOR . md5($sshPrivateKeyFile) . ".token";
+
 
         if(file_exists($tokenFile) && !(((time() - filemtime($tokenFile)) / 60) > self::MAX_TOKEN_AGE_MINUTES)) {
             $this->info("Loaded token from: " . $tokenFile);

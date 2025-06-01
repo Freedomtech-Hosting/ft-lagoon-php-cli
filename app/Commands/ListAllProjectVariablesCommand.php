@@ -7,7 +7,7 @@ class ListAllProjectVariablesCommand extends LagoonCommandBase
      *
      * @var string
      */
-    protected $signature = 'list-all-project-variables {--i|identity_file=~/.ssh/id_rsa} {--p|project=}';
+    protected $signature = 'list-all-project-variables {--p|project=}';
 
     /**
      * The console command description.

@@ -7,7 +7,7 @@ class GetProjectVariableCommand extends LagoonCommandBase
      *
      * @var string
      */
-    protected $signature = 'get-project-variable {--i|identity_file=~/.ssh/id_rsa} {--p|project=} {--e|environment=} {--k|key=}';
+    protected $signature = 'get-project-variable {--p|project=} {--e|environment=} {--k|key=}';
 
     /**
      * The console command description.

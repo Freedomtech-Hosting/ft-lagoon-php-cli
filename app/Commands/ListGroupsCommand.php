@@ -9,7 +9,7 @@ class ListGroupsCommand extends LagoonCommandBase
      *
      * @var string
      */
-    protected $signature = 'list-groups {--i|identity_file=~/.ssh/id_rsa}';
+    protected $signature = 'list-groups';
 
     /**
      * The console command description.

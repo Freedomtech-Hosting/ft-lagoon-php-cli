@@ -7,7 +7,7 @@ class DeleteProjectCommand extends LagoonCommandBase
      *
      * @var string
      */
-    protected $signature = 'delete-project {--i|identity_file=~/.ssh/id_rsa} {--p|project=} {--r|recursive}';
+    protected $signature = 'delete-project {--p|project=} {--r|recursive}';
     /**
      * The console command description.
      *
