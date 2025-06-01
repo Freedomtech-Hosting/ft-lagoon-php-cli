@@ -22,7 +22,7 @@ abstract class LagoonCommandBase extends Command
     const MAX_TOKEN_AGE_MINUTES = 5;
 
     /** @var string Default ssh id file */
-    const DEFATULT_IDENTITY_FILE = "~/.ssh/id_rsa";
+    const DEFAULT_IDENTITY_FILE = "~/.ssh/id_rsa";
 
     /**
      * Configure the command options across all children
