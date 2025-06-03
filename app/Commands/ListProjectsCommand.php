@@ -1,7 +1,5 @@
 <?php namespace App\Commands;
 
-
-
 class ListProjectsCommand extends LagoonCommandBase
 {
     /**
