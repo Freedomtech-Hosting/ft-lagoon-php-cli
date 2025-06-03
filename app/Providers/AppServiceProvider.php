@@ -22,7 +22,7 @@ class AppServiceProvider extends ServiceProvider
     {
         $this->app->bind(Client::class, function ($app, $parameters) {
           $config = array_merge(config('ftlagoonphp'), $parameters);
-	        return new Client($config);
+          return new Client($config);
 	      });
     }
 }

@@ -7,7 +7,7 @@ class ListProjectEnvironmentDeploymentsCommand extends LagoonCommandBase
      *
      * @var string
      */
-    protected $signature = 'list-project-environment-deployments {--i|identity_file=~/.ssh/id_rsa} {--p|project=} {--e|environment=} {--s|status=}';
+    protected $signature = 'list-project-environment-deployments {--p|project=} {--e|environment=} {--s|status=}';
 
     /**
      * The console command description.

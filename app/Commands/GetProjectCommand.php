@@ -7,7 +7,7 @@ class GetProjectCommand extends LagoonCommandBase
      *
      * @var string
      */
-    protected $signature = 'get-project {--i|identity_file=~/.ssh/id_rsa} {--p|project=}';
+    protected $signature = 'get-project {--p|project=}';
 
     /**
      * The console command description.

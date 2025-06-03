@@ -7,7 +7,7 @@ class AddOrUpdateProjectVariable extends LagoonCommandBase
      *
      * @var string
      */
-    protected $signature = 'add-project-variable {--i|identity_file=~/.ssh/id_rsa} {--p|project=} {--e|environment=} {--k|key=} {--a|value=} {--s|scope=}';
+    protected $signature = 'add-project-variable {--p|project=} {--e|environment=} {--k|key=} {--a|value=} {--s|scope=}';
     /**
      * The console command description.
      *

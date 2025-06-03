@@ -7,7 +7,7 @@ class AddGroupToProjectCommand extends LagoonCommandBase
      *
      * @var string
      */
-    protected $signature = 'add-group-to-project {--i|identity_file=~/.ssh/id_rsa} {--p|project=} {--g|group=}';
+    protected $signature = 'add-group-to-project {--p|project=} {--g|group=}';
 
     /**
      * The console command description.

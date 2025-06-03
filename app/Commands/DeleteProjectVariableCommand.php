@@ -7,7 +7,7 @@ class DeleteProjectVariableCommand extends LagoonCommandBase
      *  
      * @var string
      */
-    protected $signature = 'delete-project-variable {--i|identity_file=~/.ssh/id_rsa} {--p|project=} {--e|environment=} {--k|key=}';
+    protected $signature = 'delete-project-variable {--p|project=} {--e|environment=} {--k|key=}';
     /**
      * The console command description.
      *

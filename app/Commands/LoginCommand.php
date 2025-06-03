@@ -7,7 +7,7 @@ class LoginCommand extends LagoonCommandBase
      *
      * @var string
      */
-    protected $signature = 'login {--i|identity_file=~/.ssh/id_rsa}';
+    protected $signature = 'login';
 
     /**
      * The console command description.

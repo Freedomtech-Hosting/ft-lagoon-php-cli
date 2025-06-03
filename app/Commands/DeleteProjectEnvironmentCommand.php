@@ -7,7 +7,7 @@ class DeleteProjectEnvironmentCommand extends LagoonCommandBase
      *
      * @var string
      */
-    protected $signature = 'delete-project-environment {--i|identity_file=~/.ssh/id_rsa} {--p|project=} {--e|environment=}';
+    protected $signature = 'delete-project-environment {--p|project=} {--e|environment=}';
     /**
      * The console command description.
      *

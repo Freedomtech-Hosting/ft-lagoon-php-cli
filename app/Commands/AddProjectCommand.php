@@ -7,7 +7,7 @@ class AddProjectCommand extends LagoonCommandBase
      *
      * @var string
      */
-    protected $signature = 'add-project {--i|identity_file=~/.ssh/id_rsa} {--p|project=} {--g|gitUrl=} {--b|branches=} {--e|productionEnvironment=} {--c|clusterId=} {--k|privateKey=} {--o|organizationId=} {--a|addOrgOwnerToProject=}';
+    protected $signature = 'add-project {--p|project=} {--g|gitUrl=} {--b|branches=} {--e|productionEnvironment=} {--c|clusterId=} {--k|privateKey=} {--o|organizationId=} {--a|addOrgOwnerToProject=}';
 
     /**
      * The console command description.
