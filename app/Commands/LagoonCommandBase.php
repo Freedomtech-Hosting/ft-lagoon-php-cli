@@ -31,6 +31,7 @@ abstract class LagoonCommandBase extends Command
      */
     protected function configure()
     {
+        parent::configure();
         $this->getDefinition()->addOption(
             new \Symfony\Component\Console\Input\InputOption(
                 'identity_file',
